@@ -38,8 +38,8 @@ function Navbar() {
                                 <li className='home m-5 font-semibold text-white '><NavLink to="/">Home</NavLink></li>
                                 <li className='products m-5 font-semibold text-white'><NavLink to="/products">Products</NavLink></li>
                                 <li className='services m-5 font-semibold text-white'><NavLink to="/services">Services</NavLink></li>
-                                <li className='contact m-5 font-semibold text-white'><NavLink>Contact Us</NavLink></li>
-                                <li className='about m-5 font-semibold text-white'><NavLink>Sign up</NavLink></li>
+                                <li className='contact m-5 font-semibold text-white'><NavLink to="/about">About Us</NavLink></li>
+                                <li className='about m-5 font-semibold text-white'><NavLink to="/signup">Sign up</NavLink></li>
 
                             </div>
                             <div className='m-0 p-0'>

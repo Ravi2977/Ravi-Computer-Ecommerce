@@ -132,6 +132,7 @@
   background-color: rgb(71, 98, 102);
   border-radius: 20px;
   transition:box-shadow .2s ease-in-out;
+  cursor: pointer;
 }
 .card:hover{
   box-shadow: 20px 20px 50px rgb(71, 98, 102);
@@ -208,4 +209,49 @@ color: rgb(71, 98, 102);
 }
 .laptop{
 
+}
+.serviceCarasoul{
+  height:400px;
+  width:65%;
+  /* background-color: green; */
+  background-image: url("Images/Desktop\ -\ 5.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 10px 10px 30px rgb(71,98,102);
+  border-radius: 10px;
+  animation: cara 20s infinite;
+  background-position: center;
+  
+
+}
+@keyframes cara {
+  0%, 25% {
+    background-image: url("Images/Desktop%20-%205.png");
+    opacity: 1;
+  }
+  33%, 58% {
+    background-image: url("Images/ComputerService.png");
+    opacity: 1;
+  }
+  66%, 91% {
+    background-image: url("Images/Printerservice.png");
+    opacity: 1;
+  }
+ 
+}.title{
+  font-family: "Outfit",serif;
+  font-weight: bolder;
+  font-size: xx-large;
+  color: rgb(71, 98, 102);
+  text-shadow: 20px 20px 20px rgb(71, 98, 102);
+}
+.signup{
+  color: rgb(19, 19, 7);
+  font-size: large;
+  font-weight: bold;
+  font-family: "Outfit",serif;
+}
+.label{
+  font-size: large;
+  padding: 0 10px;
 }

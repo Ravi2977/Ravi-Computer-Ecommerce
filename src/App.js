@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './Components/Navbar';
 import Products from './Components/Products';
 import Services from './Components/Services';
+import Signup from './Components/Signup';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route exact path='/products' element={<Products />} />
           <Route exact path='/services' element={<Services />} />
+          <Route exact path='/signup' element={<Signup/>} />
         </Routes>
       </div>
       <Footer />
