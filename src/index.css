@@ -1,0 +1,211 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* <link href="https://fonts.googleapis.com/css2?family=Pridi:wght@200;300;400;500;600;700&display=swap" rel="stylesheet"> */
+*{
+  font-family: "Outfit", sans-serif;
+}
+.build {
+  background-color: rgb(108, 149, 155);
+  border: rgb(108, 149, 155);
+  transition:font-size .1s ease-in-out;
+  transition:box-shadow .1s ease-in-out;
+}
+.home {
+    padding: 10px;
+   
+    transition: ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+  }
+  .home:hover {
+    box-shadow: 10px 10px 30px rgb(39, 55, 57);
+    font-size: large;
+    transition:font-size .1s ease-in-out;
+    transition:box-shadow .1s ease-in-out;
+    margin: 17px;
+  }
+  .products {
+    padding: 10px;
+   
+    transition: ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+  }
+  .products:hover {
+    box-shadow: 10px 10px 30px rgb(39, 55, 57);
+    font-size: large;
+    transition:font-size .1s ease-in-out;
+    transition:box-shadow .1s ease-in-out;
+    margin: 16.2px;
+  }
+  .services {
+    padding: 10px;
+   
+    transition: ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+  }
+  .services:hover {
+    box-shadow: 10px 10px 30px rgb(39, 55, 57);
+    font-size: large;
+    transition:font-size .1s ease-in-out;
+    transition:box-shadow .1s ease-in-out;
+    margin: 16.2px;
+  }
+  .contact {
+    padding: 10px;
+   
+    transition: ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+  }
+  .contact:hover {
+    box-shadow: 10px 10px 30px rgb(39, 55, 57);
+    font-size: large;
+    transition:font-size .1s ease-in-out;
+    transition:box-shadow .1s ease-in-out;
+    margin: 15px;
+  }
+  .about {
+    padding: 10px;
+    transition: ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+  }
+  .about:hover {
+    box-shadow: 10px 10px 30px rgb(39, 55, 57);
+    font-size: large;
+    transition:font-size .1s ease-in-out;
+    transition:box-shadow .1s ease-in-out;
+    margin: 17px;
+  }
+.build:hover {
+  box-shadow: 10px 10px 30px rgb(39, 55, 57);
+  
+}
+
+.triangle{
+    
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 250px 70px 0 0;
+        border-color: rgb(100, 138, 143) transparent transparent transparent;
+    
+    /* rotate: -10deg; */
+}
+.triangle-bottom-left {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 220px 0 0 100px;
+    border-color: transparent transparent transparent  rgb(100, 138, 143);
+    top: 380px;
+}
+.computer{
+    color:rgb(100, 138, 143) ;
+}
+.slogan{
+    color: rgb(100, 138, 143);
+    font-weight: bold;
+}
+.productSection{
+  color: rgb(71, 98, 102);
+  
+}
+.card{
+  height: 350px;
+  width: 300px;
+  background-color: rgb(71, 98, 102);
+  border-radius: 20px;
+  transition:box-shadow .2s ease-in-out;
+}
+.card:hover{
+  box-shadow: 20px 20px 50px rgb(71, 98, 102);
+ 
+  
+}
+.categoryPara{
+  color: rgb(229, 229, 164);
+}
+.brands{
+  height: 200px;
+}
+.logo{
+  height: 200px;
+  border-radius: 50%;
+  
+}
+.name{
+color: rgb(71, 98, 102);
+}
+.reviewCard{
+  width: 300px;
+}
+.button{
+  font-family: "Pridi", serif;
+  font-weight: 400;
+  font-size: x-large;
+}
+.inputBox{
+  width: 600px;
+  height: 50px;
+  box-shadow: 5px 5px 20px rgb(71, 98, 102);
+  border-radius: 10px;
+  margin-bottom: 40px;
+  padding: 0 10px;
+}
+.label{
+  font-family: "Outfit",serif;
+  font-weight: 600;
+  font-size: larger;
+  color: rgb(71, 98, 102);
+
+}
+.footer{
+  background-color: rgb(71,98,102);
+}
+.footerSection{
+  font-family: "Pridi",serif;
+  font-size: larger;
+  color: rgb(240, 255, 252);
+}
+.itemBox{
+  height: 300px;
+  width: 250px;
+  border-radius: 10px;
+  background-color: rgb(71,98,102);
+  margin: 10px;
+}
+.sectionName{
+  padding:5px 20px;
+  font-family: "Pridi",serif;
+  font-size: x-large;
+  color: rgb(71,98,102);
+  background-color: rgb(158, 208, 216);
+  background-image: linear-gradient(to right, rgb(210, 234, 238) ,rgb(160, 199, 205), rgb(71,98,102));
+  
+}
+.specs{
+  font-size: 10px;
+}
+.model{
+  font-size: medium;
+  font-weight: 200;
+}
+.laptop{
+
+}
