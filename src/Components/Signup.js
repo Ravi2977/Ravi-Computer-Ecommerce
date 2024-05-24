@@ -2,7 +2,7 @@ import React from 'react'
 
 function Signup() {
     return (
-        <div className='p-10'>
+        <div className='p-10 rounded-lg'>
             <div className='flex justify-center flex-col items-center'>
                 <div className='flex justify-center items-center mb-10'><span className='signup'>Sign-up to</span><span className="title ml-1"> Ravi Computer</span></div>
                 <div className='flex flex-col items-start'>
@@ -26,6 +26,7 @@ function Signup() {
                 </div>
                 <button className='mt-10 mb-3 border py-4 px-10 rounded-xl font-semibold text-white shadow-2xl build button' >Sign Up</button>
             </div>
+            
         </div>
     )
 }

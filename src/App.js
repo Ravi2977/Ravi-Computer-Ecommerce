@@ -7,6 +7,8 @@ import Navbar from './Components/Navbar';
 import Products from './Components/Products';
 import Services from './Components/Services';
 import Signup from './Components/Signup';
+import AddProduct from './Components/AddProduct';
+import BuildPC from './Components/BuildPC';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
           <Route exact path='/products' element={<Products />} />
           <Route exact path='/services' element={<Services />} />
           <Route exact path='/signup' element={<Signup/>} />
+          <Route exact path='/addproduct' element={<AddProduct/>} />
+          <Route exact path='/build' element={<BuildPC/>} />
         </Routes>
       </div>
       <Footer />

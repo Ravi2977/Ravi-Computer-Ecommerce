@@ -255,3 +255,10 @@ color: rgb(71, 98, 102);
   font-size: large;
   padding: 0 10px;
 }
+dialog::backdrop{
+background-color: rgb(71, 98, 102);
+opacity: 50%;
+}
+.heading{
+  color: rgb(71,98,102);
+}

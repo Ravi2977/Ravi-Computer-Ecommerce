@@ -2,8 +2,25 @@ import React from 'react'
 import logo from '../Images/new logo fixed.png'
 import desktop from '../Images/desktop.png'
 import { NavLink } from 'react-router-dom'
+import Signup from './Signup'
+import Signin from './Signin'
+import cross from '../Images/cross.png'
 
 function Navbar() {
+    const openSignupForm = () => {
+        const signupForm = document.getElementById("signupForm")
+        signupForm.showModal();
+    }
+    const openSigninForm = () => {
+        const signinForm = document.getElementById("signinFrom")
+        signinForm.showModal();
+    }
+    const closeDialogBox = () => {
+        const signinForm = document.getElementById("signinFrom")
+        const signupForm = document.getElementById("signupForm")
+        signinForm.close();
+        signupForm.close()
+    }
     return (
         <div style={{ backgroundColor: 'rgb(240, 255, 252)' }}>
             <ul className=' pb-3 shadow-md ' >
@@ -21,8 +38,8 @@ function Navbar() {
 
                                 <h1 className='text-5xl  font-extrabold mt-2.5' style={{ textShadow: '20px 20px 27px black' }}> with us</h1>
                                 <div>
-                                    <button className='button mt-20 border py-4 px-10 rounded-xl font-semibold text-white shadow-2xl build' >Build Now</button>
-                                    <button className='button mt-20 border py-4 px-10 rounded-xl font-semibold text-white shadow-2xl build mx-2' >Sign in</button>
+                                    <NavLink className='button mt-20 border py-4 px-10 rounded-xl font-semibold text-white shadow-2xl build' to="/build" >Build Now</NavLink>
+                                    <button className='button mt-20 border py-4 px-10 rounded-xl font-semibold text-white shadow-2xl build mx-2' onClick={openSigninForm} >Sign in</button>
                                 </div>
 
 
@@ -39,7 +56,7 @@ function Navbar() {
                                 <li className='products m-5 font-semibold text-white'><NavLink to="/products">Products</NavLink></li>
                                 <li className='services m-5 font-semibold text-white'><NavLink to="/services">Services</NavLink></li>
                                 <li className='contact m-5 font-semibold text-white'><NavLink to="/about">About Us</NavLink></li>
-                                <li className='about m-5 font-semibold text-white'><NavLink to="/signup">Sign up</NavLink></li>
+                                <li className='about m-5 font-semibold text-white'><button onClick={openSignupForm}>Sign up</button></li>
 
                             </div>
                             <div className='m-0 p-0'>
@@ -51,6 +68,26 @@ function Navbar() {
                 </div>
                 <div className='w-full flex justify-center slogan text-xl' >Your Future Our Technology !</div>
             </ul>
+            <div>
+                <dialog id="signupForm" className='rounded-xl ' >
+                    <div className='flex flex-col items-end'>
+                        <img onClick={closeDialogBox} className='h-10 cursor-pointer pr-2 pt-2' src={cross} alt="" />
+                        <Signup />
+                    </div>
+
+
+                </dialog>
+            </div>
+            <div>
+                <dialog id="signinFrom" className='rounded-xl text-center'>
+                    <div className='flex flex-col items-end'>
+
+                        <img onClick={closeDialogBox} className='h-10 cursor-pointer pr-2 pt-2' src={cross} alt="" />
+                        <Signin />
+
+                    </div>
+                </dialog>
+            </div>
         </div>
     )
 }

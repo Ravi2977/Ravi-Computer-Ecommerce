@@ -9,6 +9,8 @@ function Card(props) {
                 </div>
                 <div className={`productName text-white ${props.size} font-bold`} style={{ textShadow: '20px 20px 27px black' }}>{props.category}</div>
                 <div className='px-3 categoryPara text-gray-100'><p>{props.desc}</p></div>
+                {/* <button className={`p-${props.btnpadding}  bg-green-600 rounded-md`} >{props.btnname}</button> */}
+
             </div>
         </div>
     )
