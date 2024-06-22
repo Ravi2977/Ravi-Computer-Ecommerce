@@ -3,15 +3,16 @@ import laptop from '../Images/laptop.png'
 function Card(props) {
     return (
         <div>
-            <div className="card text-center mx-4 my-2">
-                <div className='mt-2'>
-                    <img className='rounded-lg' src={props.src} alt="" />
-                </div>
+            <div className=" card my-4 mx-2 rounded-lg shadow-md p-6 cursor-pointer hover:shadow-lg hover:scale-105 transition-transform ">
+            <div className='mt-2 h-56'>
+                <img className='rounded-lg' src={props.src} alt="" />
+            </div>
+            <div className='flex flex-col text-center items-center justify-center'>
                 <div className={`productName text-white ${props.size} font-bold`} style={{ textShadow: '20px 20px 27px black' }}>{props.category}</div>
                 <div className='px-3 categoryPara text-gray-100'><p>{props.desc}</p></div>
-                {/* <button className={`p-${props.btnpadding}  bg-green-600 rounded-md`} >{props.btnname}</button> */}
-
             </div>
+        </div>
+        
         </div>
     )
 }

@@ -10,7 +10,7 @@ function Review() {
                             <div className="name text-xl font-bold">
                                 Ravi Maurya
                             </div>
-                            <div>
+                            <div className='text-yellow-500 text-xl'>
                                 ★★★★★
                             </div>
                             <div className='review'>
@@ -21,7 +21,7 @@ function Review() {
                             <div className="name text-xl font-bold">
                                 Ravi Maurya
                             </div>
-                            <div>
+                            <div className='text-yellow-500 text-xl'>
                                 ★★★★★
                             </div>
                             <div className='review'>
@@ -32,7 +32,7 @@ function Review() {
                             <div className="name text-xl font-bold">
                                 Ravi Maurya
                             </div>
-                            <div>
+                            <div className='text-yellow-500 text-xl'>
                                 ★★★★★
                             </div>
                             <div className='review'>
@@ -45,7 +45,7 @@ function Review() {
                             <div className="name text-xl font-bold">
                                 Ravi Maurya
                             </div>
-                            <div>
+                            <div className='text-yellow-500 text-xl'>
                                 ★★★★★
                             </div>
                             <div className='review'>
@@ -56,7 +56,7 @@ function Review() {
                             <div className="name text-xl font-bold">
                                 Ravi Maurya
                             </div>
-                            <div>
+                            <div className='text-yellow-500 text-xl'>
                                 ★★★★★
                             </div>
                             <div className='review'>
@@ -67,7 +67,7 @@ function Review() {
                             <div className="name text-xl font-bold">
                                 Ravi Maurya
                             </div>
-                            <div>
+                            <div className='text-yellow-500 text-xl'>
                                 ★★★★★
                             </div>
                             <div className='review'>

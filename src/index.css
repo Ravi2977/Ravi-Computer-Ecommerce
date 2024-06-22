@@ -2,166 +2,157 @@
 @tailwind components;
 @tailwind utilities;
 /* <link href="https://fonts.googleapis.com/css2?family=Pridi:wght@200;300;400;500;600;700&display=swap" rel="stylesheet"> */
-*{
+* {
   font-family: "Outfit", sans-serif;
 }
 .build {
   background-color: rgb(108, 149, 155);
   border: rgb(108, 149, 155);
-  transition:font-size .1s ease-in-out;
-  transition:box-shadow .1s ease-in-out;
+  transition: font-size 0.1s ease-in-out;
+  transition: box-shadow 0.1s ease-in-out;
 }
 .home {
-    padding: 10px;
-   
-    transition: ease-in-out;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-  }
-  .home:hover {
-    box-shadow: 10px 10px 30px rgb(39, 55, 57);
-    font-size: large;
-    transition:font-size .1s ease-in-out;
-    transition:box-shadow .1s ease-in-out;
-    margin: 17px;
-  }
-  .products {
-    padding: 10px;
-   
-    transition: ease-in-out;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-  }
-  .products:hover {
-    box-shadow: 10px 10px 30px rgb(39, 55, 57);
-    font-size: large;
-    transition:font-size .1s ease-in-out;
-    transition:box-shadow .1s ease-in-out;
-    margin: 16.2px;
-  }
-  .services {
-    padding: 10px;
-   
-    transition: ease-in-out;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-  }
-  .services:hover {
-    box-shadow: 10px 10px 30px rgb(39, 55, 57);
-    font-size: large;
-    transition:font-size .1s ease-in-out;
-    transition:box-shadow .1s ease-in-out;
-    margin: 16.2px;
-  }
-  .contact {
-    padding: 10px;
-   
-    transition: ease-in-out;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-  }
-  .contact:hover {
-    box-shadow: 10px 10px 30px rgb(39, 55, 57);
-    font-size: large;
-    transition:font-size .1s ease-in-out;
-    transition:box-shadow .1s ease-in-out;
-    margin: 15px;
-  }
-  .about {
-    padding: 10px;
-    transition: ease-in-out;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-  }
-  .about:hover {
-    box-shadow: 10px 10px 30px rgb(39, 55, 57);
-    font-size: large;
-    transition:font-size .1s ease-in-out;
-    transition:box-shadow .1s ease-in-out;
-    margin: 17px;
-  }
+  padding: 10px;
+  transition: ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+.home:hover {
+  box-shadow: 10px 10px 30px rgb(39, 55, 57);
+
+  transition: font-size 0.1s ease-in-out;
+  transition: box-shadow 0.1s ease-in-out;
+}
+.products {
+  padding: 10px;
+
+  transition: ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+.products:hover {
+  box-shadow: 10px 10px 30px rgb(39, 55, 57);
+
+  transition: font-size 0.1s ease-in-out;
+  transition: box-shadow 0.1s ease-in-out;
+}
+.services {
+  padding: 10px;
+  transition: ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+.services:hover {
+  box-shadow: 10px 10px 30px rgb(39, 55, 57);
+
+  transition: font-size 0.1s ease-in-out;
+  transition: box-shadow 0.1s ease-in-out;
+}
+.contact {
+  padding: 10px;
+
+  transition: ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+.contact:hover {
+  box-shadow: 10px 10px 30px rgb(39, 55, 57);
+
+  transition: font-size 0.1s ease-in-out;
+  transition: box-shadow 0.1s ease-in-out;
+}
+.about {
+  padding: 10px;
+  transition: ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+.about:hover {
+  box-shadow: 10px 10px 30px rgb(39, 55, 57);
+
+  transition: font-size 0.1s ease-in-out;
+  transition: box-shadow 0.1s ease-in-out;
+}
 .build:hover {
   box-shadow: 10px 10px 30px rgb(39, 55, 57);
-  
 }
 
-.triangle{
-    
-        display: inline-block;
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: 250px 70px 0 0;
-        border-color: rgb(100, 138, 143) transparent transparent transparent;
-    
-    /* rotate: -10deg; */
+.triangle {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 250px 70px 0 0;
+  border-color: rgb(100, 138, 143) transparent transparent transparent;
+
+  /* rotate: -10deg; */
 }
 .triangle-bottom-left {
-    display: inline-block;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 220px 0 0 100px;
-    border-color: transparent transparent transparent  rgb(100, 138, 143);
-    top: 380px;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 220px 0 0 100px;
+  border-color: transparent transparent transparent rgb(100, 138, 143);
+  top: 380px;
 }
-.computer{
-    color:rgb(100, 138, 143) ;
+.computer {
+  color: rgb(100, 138, 143);
 }
-.slogan{
-    color: rgb(100, 138, 143);
-    font-weight: bold;
+.slogan {
+  color: rgb(100, 138, 143);
+  font-weight: bold;
 }
-.productSection{
+.productSection {
   color: rgb(71, 98, 102);
-  
 }
-.card{
+.card {
   height: 350px;
   width: 300px;
   background-color: rgb(71, 98, 102);
+  border: 2px solid rgb(108, 124, 127);
   border-radius: 20px;
-  transition:box-shadow .2s ease-in-out;
   cursor: pointer;
 }
-.card:hover{
+.card:hover {
   box-shadow: 20px 20px 50px rgb(71, 98, 102);
- 
-  
 }
-.categoryPara{
+/* .card{
+  height: 350px;
+  width: 300px;
+} */
+.categoryPara {
   color: rgb(229, 229, 164);
 }
-.brands{
+.brands {
   height: 200px;
 }
-.logo{
+.logo {
   height: 200px;
   border-radius: 50%;
-  
 }
-.name{
-color: rgb(71, 98, 102);
+.name {
+  color: rgb(71, 98, 102);
 }
-.reviewCard{
+.reviewCard {
   width: 300px;
 }
-.button{
+.button {
   font-family: "Pridi", serif;
   font-weight: 400;
   font-size: x-large;
 }
-.inputBox{
+.inputBox {
   width: 600px;
   height: 50px;
   box-shadow: 5px 5px 20px rgb(71, 98, 102);
@@ -169,96 +160,174 @@ color: rgb(71, 98, 102);
   margin-bottom: 40px;
   padding: 0 10px;
 }
-.label{
-  font-family: "Outfit",serif;
+.label {
+  font-family: "Outfit", serif;
   font-weight: 600;
   font-size: larger;
   color: rgb(71, 98, 102);
-
 }
-.footer{
-  background-color: rgb(71,98,102);
+.footer {
+  background-color: rgb(71, 98, 102);
+  /* margin: 0; */
 }
-.footerSection{
-  font-family: "Pridi",serif;
+.footerSection {
+  font-family: "Pridi", serif;
   font-size: larger;
   color: rgb(240, 255, 252);
 }
-.itemBox{
+.itemBox {
   height: 300px;
   width: 250px;
   border-radius: 10px;
-  background-color: rgb(71,98,102);
+  background-color: rgb(71, 98, 102);
   margin: 10px;
 }
-.sectionName{
-  padding:5px 20px;
-  font-family: "Pridi",serif;
+.sectionName {
+  padding: 5px 20px;
+  font-family: "Pridi", serif;
   font-size: x-large;
-  color: rgb(71,98,102);
+  color: rgb(71, 98, 102);
   background-color: rgb(158, 208, 216);
-  background-image: linear-gradient(to right, rgb(210, 234, 238) ,rgb(160, 199, 205), rgb(71,98,102));
-  
+  background-image: linear-gradient(
+    to right,
+    rgb(210, 234, 238),
+    rgb(160, 199, 205),
+    rgb(71, 98, 102)
+  );
 }
-.specs{
+.specs {
   font-size: 10px;
 }
-.model{
+.model {
   font-size: medium;
   font-weight: 200;
 }
-.laptop{
-
+.laptop {
 }
-.serviceCarasoul{
-  height:400px;
-  width:65%;
+.serviceCarasoul {
+  height: 400px;
+  width: 65%;
   /* background-color: green; */
   background-image: url("Images/Desktop\ -\ 5.png");
   background-repeat: no-repeat;
   background-size: cover;
-  box-shadow: 10px 10px 30px rgb(71,98,102);
+  box-shadow: 10px 10px 30px rgb(71, 98, 102);
   border-radius: 10px;
   animation: cara 20s infinite;
   background-position: center;
-  
-
 }
 @keyframes cara {
-  0%, 25% {
+  0%,
+  25% {
     background-image: url("Images/Desktop%20-%205.png");
     opacity: 1;
   }
-  33%, 58% {
+  33%,
+  58% {
     background-image: url("Images/ComputerService.png");
     opacity: 1;
   }
-  66%, 91% {
+  66%,
+  91% {
     background-image: url("Images/Printerservice.png");
     opacity: 1;
   }
- 
-}.title{
-  font-family: "Outfit",serif;
+}
+.title {
+  font-family: "Outfit", serif;
   font-weight: bolder;
   font-size: xx-large;
   color: rgb(71, 98, 102);
   text-shadow: 20px 20px 20px rgb(71, 98, 102);
 }
-.signup{
+.signup {
   color: rgb(19, 19, 7);
-  font-size: large;
+
   font-weight: bold;
-  font-family: "Outfit",serif;
+  font-family: "Outfit", serif;
 }
-.label{
-  font-size: large;
+.label {
   padding: 0 10px;
 }
-dialog::backdrop{
-background-color: rgb(71, 98, 102);
-opacity: 50%;
+dialog::backdrop {
+  background-color: rgb(71, 98, 102);
+  opacity: 50%;
 }
-.heading{
-  color: rgb(71,98,102);
+.heading,
+.verificationHead {
+  color: rgb(71, 98, 102);
+}
+dialog {
+  /* background-color: rgb(203, 221, 224); */
+}
+.loader {
+  width: 48px;
+  height: 48px;
+  margin: 35px;
+  border: 5px solid rgb(71, 98, 102);
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.loaderP {
+  width: 48px;
+  height: 48px;
+  margin: 35px;
+  border: 5px solid rgb(211, 237, 240);
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+.categoryPara .original-price {
+  text-decoration: line-through;
+  /* color: rgb(0, 0, 0); */
+  margin-right: 10px;
+}
+
+.categoryPara .discounted-price {
+  /* color: rgb(0, 0, 0); */
+  font-weight: bold;
+}
+
+.categoryPara p {
+  display: flex;
+  align-items: center;
+}
+.discountPercentage {
+  top: -10px;
+  right: -30px;
+  background-color: rgb(87, 118, 122);
+  color: yellow;
+  font-weight: bold;
+  box-shadow: 3px 3px 40px black;
+}
+
+.productCards {
+  height: 20rem;
+  width: 15rem;
+}
+label {
+  font-weight: bold;
+}
+.categoryOfProducts {
+  height: 500px;
+}
+.mainTextColor {
+  color: rgb(71, 98, 102);
+}
+.mainBgColor {
+  background-color: rgb(158, 208, 216);
 }

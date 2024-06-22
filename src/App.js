@@ -9,12 +9,16 @@ import Services from './Components/Services';
 import Signup from './Components/Signup';
 import AddProduct from './Components/AddProduct';
 import BuildPC from './Components/BuildPC';
+import Verification from './Components/Verification';
+import CategoryProducts from './Components/CategoryProducts';
+import ViewProduct from './Components/ViewProduct';
+import Account from './Components/Account';
 
 function App() {
   return (
     <BrowserRouter>
       <Navbar />
-      <div className="App" style={{ backgroundColor: 'rgb(240, 255, 252)' }}>
+      <div className="App " style={{ backgroundColor: 'rgb(240, 255, 252)' }}>
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path='/products' element={<Products />} />
@@ -22,6 +26,10 @@ function App() {
           <Route exact path='/signup' element={<Signup/>} />
           <Route exact path='/addproduct' element={<AddProduct/>} />
           <Route exact path='/build' element={<BuildPC/>} />
+          <Route exact path='/verify' element={<Verification/>} />
+          <Route exact path='/categoryProduct' element={<CategoryProducts/>} />
+          <Route exact path='/viewProduct/:productId' element={<ViewProduct/>} />
+          <Route exact path='/account' element={<Account/>} />
         </Routes>
       </div>
       <Footer />
