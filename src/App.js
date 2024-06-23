@@ -13,6 +13,7 @@ import Verification from './Components/Verification';
 import CategoryProducts from './Components/CategoryProducts';
 import ViewProduct from './Components/ViewProduct';
 import Account from './Components/Account';
+import Cart from './Components/Cart';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route exact path='/categoryProduct' element={<CategoryProducts/>} />
           <Route exact path='/viewProduct/:productId' element={<ViewProduct/>} />
           <Route exact path='/account' element={<Account/>} />
+          <Route exact path='/cart' element={<Cart/>} />
         </Routes>
       </div>
       <Footer />

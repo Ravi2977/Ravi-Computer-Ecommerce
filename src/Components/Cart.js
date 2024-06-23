@@ -2,17 +2,62 @@ import React, { useEffect, useState } from 'react';
 import laptop from '../Images/laptop.png';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import logo from '../Images/new logo fixed.png'
+import Swal from 'sweetalert2';
 
 function Cart(props) {
     const [totalAmount, setTotalAmount] = useState(0);
+    const [totalAmountWithTaxes, setTotalAmountWithTaxes] = useState(0)
     const navigate = useNavigate();
     const [products, setProducts] = useState([]);
     const [cartItem, setCartItem] = useState()
     const [addressOfUser, setAddressOfUser] = useState()
+    const [oading, setLoading] = useState(false)
     const user = {
         id: localStorage.getItem("login") ? JSON.parse(localStorage.getItem('login')).useId : "",
         email: localStorage.getItem("login") ? JSON.parse(localStorage.getItem('login')).user : ""
     }
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.src = "https://checkout.razorpay.com/v1/checkout.js";
+        script.async = true;
+        script.onload = () => {
+            console.log('Razorpay script loaded');
+        };
+        document.body.appendChild(script);
+
+        return () => {
+            document.body.removeChild(script);
+        };
+    }, []);
+
+    const addOrderAfterPayment = async () => {
+        const token = JSON.parse(localStorage.getItem("login")).token
+     
+            try {
+                const response = await axios.post(
+                    `${url}order/addOrder`,
+                    order,
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        }
+                    }
+                );
+                document.getElementById("loading").close()
+                Swal.fire({
+                    title: "Congratulations !",
+                    text: "Your Order is placed",
+                    icon: "Success"
+                });
+            } catch (error) {
+                console.error('Error placing order:', error);
+            }
+        
+
+    }
+
     const [order, setOrder] = useState({
         products: products,
         user: user,
@@ -59,7 +104,7 @@ function Cart(props) {
             orderStatus: "Active",
             taxes: totalAmount * 18 / 100,
             deliveryCharge: 40,
-            paymentStatus: "Remaining",
+            paymentStatus: "Paid",
             netPayableAmount: totalAmount + totalAmount * 18 / 100 + 40
         });
 
@@ -78,34 +123,101 @@ function Cart(props) {
     };
 
     const placeOrder = async () => {
-        loadCart()
-        // Retrieve the token from localStorage
-        const token = JSON.parse(localStorage.getItem('login')).token;
-
-        if (addressOfUser) {
-            try {
-                const response = await axios.post(
-                    `${url}order/addOrder`,
-                    order,
-                    {
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token}`
-                        }
-                    }
-                );
-                console.log("Congratulations Your")
-            } catch (error) {
-                console.error('Error placing order:', error);
+        if(addressOfUser){
+        const order = await axios.post(`${url}order/create_order`, {
+            amount: Math.floor(totalAmountWithTaxes),
+            info: "Order_request",
+            email: JSON.parse(localStorage.getItem('login')).user
+        }, {
+            headers: {
+                'Authorization': `Bearer ${loginData.token}`
             }
-        } else {
-            console.log("PLease add a address before placing order")
-        }
+        }).then(response => {
+            if (response.data.status === "created") {
+                console.log("Order data is :-", response.data)
+
+                const razorpay = new window.Razorpay({
+                    key: 'rzp_test_daKBtgff3GpV4I', // Your Razorpay API key
+                    currency: 'INR',
+                });
+
+                razorpay.once('payment.failed', function (response) {
+                    console.error('Payment failed:', response.error);
+                    // Display user-friendly error message or handle the failure
+                });
+
+                razorpay.once('payment.success', function (response) {
+                    console.log('Payment successful:', response);
+                    // Handle successful payment (e.g., update UI, redirect user)
+                });
+
+                let options = {
+                    amount: response.data.amount, // Amount in smallest currency unit (e.g., paisa)
+                    currency: 'INR',
+                    order_id: response.data.id,
+                    name: 'RK Computer Services',
+                    description: 'Payment for Product/Service',
+                    image: logo, // URL to your company logo
+                    handler: function (response) {
+                        document.getElementById("loading").showModal()
+                        addOrderAfterPayment()
+                    },
+                    prefill: {
+                        name: "",
+                        email: "",
+                        contact: ""
+                    },
+                    "notes": {
+                        "address": "TradeMate-Simplifying business management"
+
+                    },
+                    "theme": {
+                        "color": "#3399cc"
+                    }
+
+                };
+
+
+                // Create a new instance of Razorpay and then call open()
+                const rzpInstance = new window.Razorpay(options);
+                props.function();
+                rzpInstance.open();
+                rzpInstance.on("payment.failed", function (response) {
+                    console.log(response.error.code);
+                    console.log(response.error.description);
+                    console.log(response.error.source);
+                    console.log(response.error.step);
+                    console.log(response.error.reason);
+                    console.log(response.error.metadata.order_id);
+                    console.log(response.error.metadata.payment_id);
+                    alert("Payment failed try again")
+                })
+
+            } else {
+                console.error('Failed to create payment order:', response.data);
+
+            }
+        })
+            .catch(error => {
+                console.error('Error occurred while creating payment order:', error);
+
+            });
+        // Retrieve the token from localStorage
+    }else{
+        props.function();
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "You have not added your address go to your account and add Address !",
+            
+        })
+    }
 
     };
     const calculateTotalAmount = () => {
         const newTotalAmount = products.reduce((total, product) => total + product.actualPrice, 0);
         setTotalAmount(newTotalAmount);
+        setTotalAmountWithTaxes(totalAmount + totalAmount * 18 / 100)
     };
 
     const handleOnClickImage = (id) => {
@@ -166,7 +278,87 @@ function Cart(props) {
             }
         }
     };
-    // console.log(order)
+    const handleOnSubmit = (e) => {
+        e.preventDefault();
+
+        axios.post('https://tradematebackend-production.up.railway.app/auth/create_order', {
+            totalAmount: totalAmount,
+            info: "Order_request"
+        })
+            .then(response => {
+                console.log("Payment initiated. totalAmount:", totalAmount);
+
+                if (response.data.status === "created") {
+                    console.log(response.data);
+
+                    const razorpay = new window.Razorpay({
+                        key: 'rzp_test_daKBtgff3GpV4I', // Your Razorpay API key
+                        currency: 'INR',
+                    });
+
+                    razorpay.once('payment.failed', function (response) {
+                        console.error('Payment failed:', response.error);
+                        // Display user-friendly error message or handle the failure
+                    });
+
+                    razorpay.once('payment.success', function (response) {
+                        console.log('Payment successful:', response);
+                        // Handle successful payment (e.g., update UI, redirect user)
+                    });
+
+                    let options = {
+                        totalAmount: response.data.totalAmount, // totalAmount in smallest currency unit (e.g., paisa)
+                        currency: 'INR',
+                        order_id: response.data.id,
+                        name: 'TradeMate',
+                        description: 'Payment for Product/Service',
+                        image: logo, // URL to your company logo
+                        handler: function (response) {
+                            console.log(response.razorpay_payment_id);
+                            console.log(response.razorpay_order_id);
+                            console.log(response.razorpay_signature)
+                            alert("Payment succesfull !!")
+                        },
+                        prefill: {
+                            name: "",
+                            email: "",
+                            contact: ""
+                        },
+                        "notes": {
+                            "address": "TradeMate-Simplifying business management"
+
+                        },
+                        "theme": {
+                            "color": "#3399cc"
+                        }
+
+                    };
+
+
+                    // Create a new instance of Razorpay and then call open()
+                    const rzpInstance = new window.Razorpay(options);
+                    rzpInstance.open();
+                    rzpInstance.on("payment.failed", function (response) {
+                        console.log(response.error.code);
+                        console.log(response.error.description);
+                        console.log(response.error.source);
+                        console.log(response.error.step);
+                        console.log(response.error.reason);
+                        console.log(response.error.metadata.order_id);
+                        console.log(response.error.metadata.payment_id);
+                        alert("Payment failed try again")
+                    })
+
+                } else {
+                    console.error('Failed to create payment order:', response.data);
+                    // Display user-friendly error message or handle the failure
+                }
+            })
+            .catch(error => {
+                console.error('Error occurred while creating payment order:', error);
+                // Display user-friendly error message or handle the failure
+            });
+    };
     return (
         <div className='px-10 py-2' >
             {
@@ -217,6 +409,9 @@ function Cart(props) {
 
                 </div> : <div>Your Cart Is Empty</div>
             }
+            <dialog id='loading'>
+                please wait we are proccessing your order
+            </dialog>
         </div>
     );
 }

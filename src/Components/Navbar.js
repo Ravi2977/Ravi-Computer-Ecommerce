@@ -9,15 +9,15 @@ import cartIvon from '../Images/cartIcon.png'
 import Cart from './Cart'
 
 function Navbar() {
-    const navigate=useNavigate()
-    const handleOnClickBuild=()=>{
-navigate("/build")
+    const navigate = useNavigate()
+    const handleOnClickBuild = () => {
+        navigate("/build")
     }
-    const handleLogOUt=()=>{
+    const handleLogOUt = () => {
         localStorage.clear()
         window.location.reload()
     }
-    const [dropdownOpned,setDropDwonopned]=useState(false)
+    const [dropdownOpned, setDropDwonopned] = useState(false)
     const openSignupForm = () => {
         const signupForm = document.getElementById("signupForm")
         signupForm.showModal();
@@ -34,19 +34,26 @@ navigate("/build")
         document.getElementById("cartDialog").close();
     }
     const openDropDown = () => {
-      if(dropdownOpned){
-        document.getElementById("dropdown").classList.add("hidden")
-        setDropDwonopned(false)
-      }else{
-        document.getElementById("dropdown").classList.remove("hidden")
-        setDropDwonopned(true)
-      }
+        if (dropdownOpned) {
+            document.getElementById("dropdown").classList.add("hidden")
+            setDropDwonopned(false)
+        } else {
+            document.getElementById("dropdown").classList.remove("hidden")
+            setDropDwonopned(true)
+        }
     }
-    const handleClickOnCart =()=>{
+    const handleClickOnCart = () => {
         document.getElementById("cartDialog").showModal();
+        // navigate("/cart")
+    }
+    const handleClickOnBody = () => {
+        if (dropdownOpned) {
+            document.getElementById("dropdown").classList.add("hidden")
+            setDropDwonopned(false)
+        }
     }
     return (
-        <div style={{ backgroundColor: 'rgb(240, 255, 252)' }}>
+        <div style={{ backgroundColor: 'rgb(240, 255, 252)' }} onClick={handleClickOnBody}>
             <ul className=' pb-3 shadow-md ' >
                 <div className='flex justify-between'>
                     <div className='absolute triangle'></div>
@@ -55,15 +62,15 @@ navigate("/build")
                         <div className="flex justify-center items-center flex-col w-full ">
                             <div className='flex w-full justify-start items-center'>
                                 <li className='m-3 relative'><img src={logo} className='h-16 rounded-full' style={{ boxShadow: '10px 10px 27px black' }} alt="" /></li>
-                                <li className='m-3 ml-0 font-black text-3xl drop-shadow-2xl computer text-white' style={{ textShadow: '20px 20px 27px black' }}>Ravi <span className='computer'>Computer</span></li>
+                                <li className='m-3 ml-0 font-black text-3xl drop-shadow-2xl computer text-white' style={{ textShadow: '20px 20px 27px black' }}>RK <span className='computer'>Computer Services</span></li>
                             </div>
                             <div className='mt-28 text-center' style={{ color: 'rgb(71, 98, 102)' }}>
                                 <h1 className='text-5xl font-extrabold' style={{ textShadow: '20px 20px 27px black' }}>Build your computer</h1>
 
                                 <h1 className='text-5xl  font-extrabold mt-2.5' style={{ textShadow: '20px 20px 27px black' }}> with us</h1>
                                 <div>
-                                <button className='button mt-20 border py-4 px-10 rounded-xl font-semibold text-white shadow-2xl build mx-2  p-6 cursor-pointer hover:scale-105 transition-transform ' onClick={(e)=>handleOnClickBuild(e)}>Build Now</button>
-                                    {localStorage.getItem("login")?"":<button className='button mt-20 border py-4 px-10 rounded-xl font-semibold text-white shadow-2xl build mx-2 p-6 cursor-pointer hover:scale-105 transition-transform ' onClick={openSigninForm} >Sign in</button>}
+                                    <button className='button mt-20 border py-4 px-10 rounded-xl font-semibold text-white shadow-2xl build mx-2  p-6 cursor-pointer hover:scale-105 transition-transform ' onClick={(e) => handleOnClickBuild(e)}>Build Now</button>
+                                    {localStorage.getItem("login") ? "" : <button className='button mt-20 border py-4 px-10 rounded-xl font-semibold text-white shadow-2xl build mx-2 p-6 cursor-pointer hover:scale-105 transition-transform ' onClick={openSigninForm} >Sign in</button>}
                                 </div>
 
 
@@ -91,9 +98,9 @@ navigate("/build")
                                         </div>
                                     </div>
                                     : <button onClick={openSignupForm}>Sign up</button>}</li>
-                                     {
-                                        localStorage.getItem("login")? <li className=' rounded-lg pt-6 pr-6 cursor-pointer hover:scale-105 transition-transform '><img onClick={handleClickOnCart} className='h-10' src={cartIvon} alt="" /></li>:""
-                                     }
+                                {
+                                    localStorage.getItem("login") ? <li className=' rounded-lg pt-6 pr-6 cursor-pointer hover:scale-105 transition-transform '><img onClick={handleClickOnCart} className='h-10' src={cartIvon} alt="" /></li> : ""
+                                }
 
                             </div>
                             <div className='m-0 p-0'>

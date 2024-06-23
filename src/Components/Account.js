@@ -76,18 +76,28 @@ const Account = () => {
                         <h2 className="text-2xl font-semibold mb-4 mainTextColor">Orders</h2>
                         <ul className="list-disc pl-5 space-y-2 text-gray-700">
                             {Array.isArray(orders) && orders.map((order, index) => (
-                                <li key={order.orderId} className='bg-gray-200 p-4 rounded-lg list-none'>
-                                    <div><strong>Order ID:</strong> {order.orderId}</div>
+                                <li key={order.orderId} id='orderOfAccount' className='bg-blue-100 p-4 rounded-lg list-none'>
+                                   <div className='flex justify-between'>
+                                   <div><strong>Order ID:</strong> {order.orderId}</div>
+                                   <div className='font-semibold'>Order Date :- {order.orderDate}</div>
+                                   </div>
                                     {
                                         order.products.map((product, indexs) => (
-                                            <div className='flex justify-center items-center p-2'>
-                                                <div className='font-semibold mr-2'><strong>Item Name:</strong> {product.productName}</div>
+                                            
+                                            <div className='flex justify-around items-center p-2'>
+                                              <div className='flex justify-between flex-col'>
+                                              <div>Item Name:</div>
+                                              <div className='font-semibold mr-2'><strong></strong> {product.productName}</div>
+                                              </div>
                                                 <img className='h-28 rounded-lg' src={product.productImgUrl} alt="" />
                                             </div>
                                             
                                         ))
                                     }
-                                    <div><strong>Total Amount:</strong>  <span className='font-semibold text-green-600'>Rs.{order.netPayableAmount}</span></div>
+                                   <div className='flex justify-between'>
+                                   <div><strong>Total Amount:</strong>  <span className='font-semibold text-green-600'>Rs.{order.netPayableAmount}</span></div>
+                                   <div className="orderStatus font-semibold">Order Status :- {order.orderStatus}</div>
+                                   </div>
                                 </li>
                             ))}
                         </ul>

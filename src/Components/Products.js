@@ -9,6 +9,7 @@ function Products() {
     const [products, setProducts] = useState([])
     useEffect(() => {
         loadProducts()
+        scrollToPosition()
     }, [])
     const loadProducts = async () => {
         const products = await axios.get(`${url}auth/allProducts`)
@@ -18,6 +19,12 @@ function Products() {
         console.log("Clicked on :-", id)
         navigate(`/viewProduct/${id}`)
     }
+    const scrollToPosition = (offset) => {
+        window.scrollTo({
+            top: 600,
+            behavior: 'smooth' // For smooth scrolling
+        });
+    };
     return (
         <div>
             <div className='productCategory'>

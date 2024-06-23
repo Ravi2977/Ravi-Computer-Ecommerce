@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Card from './Card'
 import computer from '../Images/computer-repair.png'
 import laptop from '../Images/laptop-repair-1557310767-4894209.png'
@@ -7,6 +7,9 @@ import cctv from '../Images/Cctv-security-camera-on-transparent-background-PNG (
 import Signup from './Signup'
 
 function Services() {
+  useEffect(()=>{
+    scrollToPosition()
+  },[])
   const closeEvent = () => {
     console.log("Close button working")
     const openButton = document.getElementById("mydialog");
@@ -17,7 +20,12 @@ function Services() {
     const openButton = document.getElementById("mydialog");
     openButton.showModal();
   };
-
+  const scrollToPosition = (offset) => {
+    window.scrollTo({
+        top: 630,
+        behavior: 'smooth' // For smooth scrolling
+    });
+};
   return (
     <div className='py-2 flex flex-col items-center'>
       <div className='text-center font-bold text-3xl pt-8 heading'>Services</div>

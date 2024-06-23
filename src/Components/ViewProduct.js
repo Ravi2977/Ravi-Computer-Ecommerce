@@ -17,6 +17,7 @@ function ViewProduct() {
     const [error, setError] = useState(null);
     const [selectedImage, setSelectedImage] = useState(null);
     const { productId } = useParams();
+    const [height,setHeight]=useState(18)
     const url = "http://localhost:8080/";
     const [cartItem, setCartItem] = useState({
         userId: localStorage.getItem('login') ? JSON.parse(localStorage.getItem('login')).useId : "",
@@ -25,6 +26,7 @@ function ViewProduct() {
     const loadSameCategoryProducts = async () => {
         const cateogoryProducts = await axios.get(`${url}auth/productByCategoryId/${categoryId}`)
         setSameCategory(cateogoryProducts.data)
+        console.log(cateogoryProducts.data)
     }
     useEffect(() => {
         const loadProduct = async () => {
@@ -53,7 +55,7 @@ function ViewProduct() {
     }, [productId, url], []);
     useEffect(() => {
         loadSameCategoryProducts()
-    }, product)
+    }, [product])
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error loading product: {error.message}</div>;
@@ -111,7 +113,9 @@ function ViewProduct() {
             behavior: 'smooth' // For smooth scrolling
         });
     };
-    
+if(review.length>2){
+    setHeight(68)
+}
     return (
         <div className="container mx-auto py-10 px-5">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -124,27 +128,28 @@ function ViewProduct() {
                     </div>
                 </div>
                 <div className="flex flex-col justify-center items-center">
-                   <div>
-                   <h1 className="text-3xl font-bold mb-4">{product.productName}</h1>
-                    <p className="text-gray-700 mb-2">{product.productDesc}</p>
-                    <p className="text-gray-700 mb-2">Brand: {product.brand}</p>
-                    <p className="text-gray-700 mb-2">Category: {product.category.categoryName}</p>
-                    <p className="text-gray-700 mb-2">Key Feature: {product.keyFeature}</p>
-                    <div className="text-xl font-semibold mb-2">
-                        <span className="line-through text-gray-500 mr-2">Rs. {product.productMrp}</span>
-                        <span className="text-green-600">Rs. {product.actualPrice}</span>
+                    <div>
+                        <h1 className="text-3xl font-bold mb-4">{product.productName}</h1>
+                        <p className="text-gray-700 mb-2">{product.productDesc}</p>
+                        <p className="text-gray-700 mb-2">Brand: {product.brand}</p>
+                        <p className="text-gray-700 mb-2">Category: {product.category.categoryName}</p>
+                        <p className="text-gray-700 mb-2">Key Feature: {product.keyFeature}</p>
+                        <div className="text-xl font-semibold mb-2">
+                            <span className="line-through text-gray-500 mr-2">Rs. {product.productMrp}</span>
+                            <span className="text-green-600">Rs. {product.actualPrice}</span>
+                        </div>
+                        <p className="text-green-600 mb-2">Discount: {product.discountPercentage}%</p>
                     </div>
-                    <p className="text-green-600 mb-2">Discount: {product.discountPercentage}%</p>
-                   </div>
                     <button className="mainBgColor  mainTextColor font-semibold text-xl hover:scale-105 transition-all w-52 py-2 rounded-md mt-4" onClick={handleAddToCart}>Add to Cart</button>
                     <div className="addInfo h-5 w-full text-center mt-5 font-semibold text-xl text-green-600" id='addInfo'></div>
                 </div>
             </div>
             <div className="grid grid-cols-2 my-10">
-                <div className='text-center'>
+                <div className='text-center '>
                     <div className='heading text-2xl font-semibold mb-16 mainBgColor'>Reviews</div>
+                    <div className={`h-${height} overflow-y-aut0`}>
                     {
-                       review.length>0?review.map((review, index) => {
+                        review.length > 0 ? review.map((review, index) => {
                             // Create an array to hold the stars
                             const stars = [];
                             for (let i = 0; i < review.starCount; i++) {
@@ -158,23 +163,24 @@ function ViewProduct() {
                                         {stars} {/* Render the stars array */}
                                     </div>
                                     <div className="reviewText text-start">{review.review}</div>
+                                    <br/>
                                 </div>
                             );
-                        }):<div className='text-xl font-semibold heading'>No reviews</div>
+                        }) : <div className='text-xl font-semibold heading'>No reviews</div>
                     }
-
+</div>
                 </div>
                 <div className='text-center'>
                     <div>
-                    <div className='heading text-2xl font-semibold mb-16 mainBgColor'>Product Description</div>
-            
-                                <div  className="reviewBox flex flex-col items-start mx-16">
-                                    <div className="customerName name text-xl font-bold">{product.productName}</div>
-                                    
-                                    <div className="reviewText text-start">{product.productDesc}</div>
-                                </div>
-                         
-                        
+                        <div className='heading text-2xl font-semibold mb-16 mainBgColor'>Product Description</div>
+
+                        <div className="reviewBox flex flex-col items-start mx-16">
+                            <div className="customerName name text-xl font-bold">{product.productName}</div>
+
+                            <div className="reviewText text-start">{product.productDesc}</div>
+                        </div>
+
+
                     </div>
                 </div>
             </div>
@@ -190,12 +196,21 @@ function ViewProduct() {
                 <div className="sectionName ">Similler Products</div>
                 <div className="py-3 laptop flex justify-between overflow-x-auto  ">
                     {
-                        sameCategory.map((product, index) => (
-
-                            product.category.categoryName === "Laptop" ? <div key={index} onClick={() => handleOnClickProduct(product.productId)} ><ProductCard src={product.productImgUrl} percentage={product.discountPercentage} category={product.productName} discountedPrice={product.actualPrice} mrp={product.productMrp} desc={product.productDesc} /></div> : ""
-
-
-
+                        sameCategory.map((sameCategoryProduct, index) => (
+                            (sameCategoryProduct.category.categoryName === product.category.categoryName &&
+                                sameCategoryProduct.category.categoryId === product.category.categoryId &&
+                                sameCategoryProduct.productId !== product.productId) ? (
+                                <div key={index} onClick={() => handleOnClickProduct(sameCategoryProduct.productId)}>
+                                    <ProductCard
+                                        src={sameCategoryProduct.productImgUrl}
+                                        percentage={sameCategoryProduct.discountPercentage}
+                                        category={sameCategoryProduct.productName}
+                                        discountedPrice={sameCategoryProduct.actualPrice}
+                                        mrp={sameCategoryProduct.productMrp}
+                                        desc={sameCategoryProduct.productDesc}
+                                    />
+                                </div>
+                            ) : null
                         ))
                     }
 
