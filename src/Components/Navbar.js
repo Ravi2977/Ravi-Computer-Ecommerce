@@ -15,7 +15,7 @@ function Navbar() {
     }
     const handleLogOUt = () => {
         localStorage.clear()
-        window.location.reload()
+        navigate("/")
     }
     const [dropdownOpned, setDropDwonopned] = useState(false)
     const openSignupForm = () => {
