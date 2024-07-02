@@ -25,7 +25,7 @@ function Home() {
     }, [])
     const loadCategory = async () => {
         // console.log("Category is loading")
-        const category = await axios.get("https://ecommerce-backend-bmf8.onrender.comauth/getAllCategory")
+        const category = await axios.get("https://ecommerce-backend-bmf8.onrender.com/auth/getAllCategory")
         setCategories(category.data)
         // console.log("Datat is", category.data)
     }

@@ -4,7 +4,7 @@ import ProductCard from './ProductCard'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 function Products() {
-    const url = "https://ecommerce-backend-bmf8.onrender.com"
+    const url = "https://ecommerce-backend-bmf8.onrender.com/"
     const navigate = useNavigate()
     const [products, setProducts] = useState([])
     useEffect(() => {

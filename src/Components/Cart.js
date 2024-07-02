@@ -84,7 +84,7 @@ function Cart(props) {
 
     })
     const loginData = JSON.parse(localStorage.getItem('login'))
-    const url = "https://ecommerce-backend-bmf8.onrender.com";
+    const url = "https://ecommerce-backend-bmf8.onrender.com/";
 
 
     // Load the cart when the component mounts

@@ -7,7 +7,7 @@ const Account = () => {
     const [addresses, setAddresses] = useState([]);
     const [orders, setOrders] = useState([]);
     const [showAddressForm, setShowAddressForm] = useState(false);
-    const url = "https://ecommerce-backend-bmf8.onrender.com";
+    const url = "https://ecommerce-backend-bmf8.onrender.com/";
 
     useEffect(() => {
         loadAddress();

@@ -6,7 +6,7 @@ import { firestore } from '../Firebase';
 import axios from 'axios';
 
 function AddProduct() {
-  const url = "https://ecommerce-backend-bmf8.onrender.com";
+  const url = "https://ecommerce-backend-bmf8.onrender.com/";
   const [productDetails, setProductDetails] = useState({
     productName: "",
     productDesc: "",
