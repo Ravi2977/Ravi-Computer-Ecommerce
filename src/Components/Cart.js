@@ -105,6 +105,7 @@ function Cart(props) {
                     }
                 });
                 setProducts(response.data.products);
+                console.log("Cart items are ",response.data.products)
             } catch (error) {
                 console.error('Error loading cart:', error);
             }

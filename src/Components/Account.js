@@ -39,6 +39,7 @@ const Account = () => {
                 }
             });
             setOrders(response.data);
+            console.log("Orders are :-",response.data)
         } catch (error) {
             console.error("Error loading orders:", error);
         }
