@@ -6,7 +6,7 @@ import cross from '../Images/cross.png'
 import Verification from './Verification';
 import VerificationAlert from './VerificationAlert';
 function Signin(props) {
-    const url ="http://localhost:8080/"
+    const url ="https://ecommerce-backend-bmf8.onrender.com"
     const openVerificationBox=()=>{
         document.getElementById("alert").showModal()
         // props.function();

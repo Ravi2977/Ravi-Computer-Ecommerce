@@ -7,7 +7,7 @@ const Account = () => {
     const [addresses, setAddresses] = useState([]);
     const [orders, setOrders] = useState([]);
     const [showAddressForm, setShowAddressForm] = useState(false);
-    const url = "http://localhost:8080/";
+    const url = "https://ecommerce-backend-bmf8.onrender.com";
 
     useEffect(() => {
         loadAddress();
@@ -57,19 +57,7 @@ const Account = () => {
             behavior: 'smooth'
         });
     };
-    const handleDeleteAddress = async (addressId) => {
-        try {
-            const user = JSON.parse(localStorage.getItem("login"));
-            await axios.delete(`${url}address/deleteAddress/${addressId}`, {
-                headers: {
-                    'Authorization': `Bearer ${user.token}`
-                }
-            });
-            setAddresses(addresses.filter(address => address.addressId !== addressId));
-        } catch (error) {
-            console.error('Error deleting address:', error.response ? error.response.data : error.message);
-        }
-    };
+  
     return (
         <div className="container mx-auto p-6 min-h-screen">
             <h1 className="text-3xl font-bold mb-6 mainTextColor">Your Account Page</h1>
@@ -94,7 +82,6 @@ const Account = () => {
                                 <div><strong>ZIP:</strong> {addresses.pinCode}</div>
                                 <div><strong>Locality:</strong> {addresses.locality}</div>
                                 <div><strong>Country:</strong> {addresses.country}</div>
-                                <button className='button border mt-3 py-2 px-2 rounded-xl font-semibold text-white shadow-2xl build mx-2 p-6 cursor-pointer hover:scale-105 transition-transform' onClick={() => handleDeleteAddress(addresses.addressId)}>Remove Address</button>
                             </div>
                        : <div>No address available. Please add an address.</div>}
                         <button className='button border mt-3 py-2 px-2 rounded-xl font-semibold text-white shadow-2xl build mx-2 p-6 cursor-pointer hover:scale-105 transition-transform' onClick={handleAddAddress}>Add Address</button>
@@ -117,15 +104,18 @@ const Account = () => {
                                                 <div>Item Name:</div>
                                                 <div className='font-semibold mr-2'><strong></strong> {product.productName}</div>
                                                 <div>Item Price:</div>
-                                                <div className='font-semibold mr-2 text-green-700'><strong></strong> {product.actualPrice+product.actualPrice*18/100}</div>
+                                                <div className='font-semibold mr-2 text-green-700'><strong></strong>Rs. {parseInt(product.actualPrice+product.actualPrice*18/100)}</div>
                                             </div>
                                             <img className='h-28 rounded-lg' src={product.productImgUrl} alt="" />
                                         </div>
+                                        
                                     ))}
                                     <div className='flex justify-between'>
                                         <div><strong>Total Amount:</strong>  <span className='font-semibold text-green-600'>Rs.{order.netPayableAmount}</span></div>
                                         <div className="orderStatus font-semibold">Order Status :- {order.orderStatus}</div>
                                     </div>
+                                    {order.orderStatus==="Delivered"?<div className="addReviw button border mt-3 py-2 px-2 rounded-xl font-semibold text-white shadow-2xl build mx-2 p-6 cursor-pointer hover:scale-105 transition-transform text-center">Add Review</div>:""}
+
                                 </li>
                             ))}
                         </ul>

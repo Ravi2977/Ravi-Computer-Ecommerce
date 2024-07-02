@@ -33,28 +33,41 @@ function Cart(props) {
 
     const addOrderAfterPayment = async () => {
         const token = JSON.parse(localStorage.getItem("login")).token
-     
-            try {
-                const response = await axios.post(
-                    `${url}order/addOrder`,
-                    order,
-                    {
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token}`
-                        }
+        Swal.fire({
+            title: "Please Wait  !",
+            text: "Processing your order",
+            icon: "info"
+        });
+        try {
+            const response = await axios.post(
+                `${url}order/addOrder`,
+                order,
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
                     }
-                );
-                document.getElementById("loading").close()
-                Swal.fire({
-                    title: "Congratulations !",
-                    text: "Your Order is placed",
-                    icon: "Success"
-                });
-            } catch (error) {
-                console.error('Error placing order:', error);
-            }
-        
+                }
+            );
+            removeAllItem()
+            Swal.fire({
+                title: "Congratulations !",
+                text: "Your Order is placed",
+                icon: "Success"
+            });
+        } catch (error) {
+            console.error('Error placing order:', error);
+        }
+
+
+    }
+    const removeAllItem = async () => {
+        const response = await axios.get(`${url}cart/emptyCart/${JSON.parse(localStorage.getItem('login')).useId}`,
+            {
+                headers: {
+                    'Authorization': `Bearer ${loginData.token}`
+                }
+            })
 
     }
 
@@ -71,7 +84,7 @@ function Cart(props) {
 
     })
     const loginData = JSON.parse(localStorage.getItem('login'))
-    const url = "http://localhost:8080/";
+    const url = "https://ecommerce-backend-bmf8.onrender.com";
 
 
     // Load the cart when the component mounts
@@ -123,95 +136,98 @@ function Cart(props) {
     };
 
     const placeOrder = async () => {
-        if(addressOfUser){
-        const order = await axios.post(`${url}order/create_order`, {
-            amount: Math.floor(totalAmountWithTaxes),
-            info: "Order_request",
-            email: JSON.parse(localStorage.getItem('login')).user
-        }, {
-            headers: {
-                'Authorization': `Bearer ${loginData.token}`
-            }
-        }).then(response => {
-            if (response.data.status === "created") {
-                console.log("Order data is :-", response.data)
+        if (addressOfUser) {
+            const order = await axios.post(`${url}order/create_order`, {
+                amount: Math.floor(totalAmountWithTaxes),
+                info: "Order_request",
+                email: JSON.parse(localStorage.getItem('login')).user
+            }, {
+                headers: {
+                    'Authorization': `Bearer ${loginData.token}`
+                }
+            }).then(response => {
+                if (response.data.status === "created") {
+                    console.log("Order data is :-", response.data)
 
-                const razorpay = new window.Razorpay({
-                    key: 'rzp_test_daKBtgff3GpV4I', // Your Razorpay API key
-                    currency: 'INR',
+                    const razorpay = new window.Razorpay({
+                        key: 'rzp_test_daKBtgff3GpV4I', // Your Razorpay API key
+                        currency: 'INR',
+                    });
+
+                    razorpay.once('payment.failed', function (response) {
+                        console.error('Payment failed:', response.error);
+                        // Display user-friendly error message or handle the failure
+                    });
+
+                    razorpay.once('payment.success', function (response) {
+                        console.log('Payment successful:', response);
+                        // Handle successful payment (e.g., update UI, redirect user)
+                    });
+
+                    let options = {
+                        amount: response.data.amount, // Amount in smallest currency unit (e.g., paisa)
+                        currency: 'INR',
+                        order_id: response.data.id,
+                        name: 'RK Computer Services',
+                        description: 'Payment for Product/Service',
+                        image: logo, // URL to your company logo
+                        handler: function (response) {
+                            addOrderAfterPayment()
+                        },
+                        prefill: {
+                            name: "",
+                            email: "",
+                            contact: ""
+                        },
+                        "notes": {
+                            "address": "TradeMate-Simplifying business management"
+
+                        },
+                        "theme": {
+                            "color": "#3399cc"
+                        }
+
+                    };
+
+
+                    // Create a new instance of Razorpay and then call open()
+                    const rzpInstance = new window.Razorpay(options);
+                    props.function();
+                    rzpInstance.open();
+                    rzpInstance.on("payment.failed", function (response) {
+                        console.log(response.error.code);
+                        console.log(response.error.description);
+                        console.log(response.error.source);
+                        console.log(response.error.step);
+                        console.log(response.error.reason);
+                        console.log(response.error.metadata.order_id);
+                        console.log(response.error.metadata.payment_id);
+                        Swal.fire({
+                            title: "Payment Failed !",
+                            text: "Your order failed try again",
+                            icon: "Error"
+                        });
+                    })
+
+                } else {
+                    console.error('Failed to create payment order:', response.data);
+
+                }
+            })
+                .catch(error => {
+                    console.error('Error occurred while creating payment order:', error);
+
                 });
+            // Retrieve the token from localStorage
+        } else {
+            props.function();
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "You have not added your address go to your account and add Address !",
 
-                razorpay.once('payment.failed', function (response) {
-                    console.error('Payment failed:', response.error);
-                    // Display user-friendly error message or handle the failure
-                });
-
-                razorpay.once('payment.success', function (response) {
-                    console.log('Payment successful:', response);
-                    // Handle successful payment (e.g., update UI, redirect user)
-                });
-
-                let options = {
-                    amount: response.data.amount, // Amount in smallest currency unit (e.g., paisa)
-                    currency: 'INR',
-                    order_id: response.data.id,
-                    name: 'RK Computer Services',
-                    description: 'Payment for Product/Service',
-                    image: logo, // URL to your company logo
-                    handler: function (response) {
-                        document.getElementById("loading").showModal()
-                        addOrderAfterPayment()
-                    },
-                    prefill: {
-                        name: "",
-                        email: "",
-                        contact: ""
-                    },
-                    "notes": {
-                        "address": "TradeMate-Simplifying business management"
-
-                    },
-                    "theme": {
-                        "color": "#3399cc"
-                    }
-
-                };
-
-
-                // Create a new instance of Razorpay and then call open()
-                const rzpInstance = new window.Razorpay(options);
-                props.function();
-                rzpInstance.open();
-                rzpInstance.on("payment.failed", function (response) {
-                    console.log(response.error.code);
-                    console.log(response.error.description);
-                    console.log(response.error.source);
-                    console.log(response.error.step);
-                    console.log(response.error.reason);
-                    console.log(response.error.metadata.order_id);
-                    console.log(response.error.metadata.payment_id);
-                    alert("Payment failed try again")
-                })
-
-            } else {
-                console.error('Failed to create payment order:', response.data);
-
-            }
-        })
-            .catch(error => {
-                console.error('Error occurred while creating payment order:', error);
-
-            });
-        // Retrieve the token from localStorage
-    }else{
-        props.function();
-        Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "You have not added your address go to your account and add Address !",
-            
-        })
-    }
+            })
+        }
 
     };
     const calculateTotalAmount = () => {
@@ -409,8 +425,9 @@ function Cart(props) {
 
                 </div> : <div>Your Cart Is Empty</div>
             }
-            <dialog id='loading'>
-                please wait we are proccessing your order
+
+            <dialog id='loading' className='' >
+                <span class="loader"></span>
             </dialog>
         </div>
     );

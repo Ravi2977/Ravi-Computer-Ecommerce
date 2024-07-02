@@ -7,6 +7,7 @@ import Signin from './Signin'
 import cross from '../Images/cross.png'
 import cartIvon from '../Images/cartIcon.png'
 import Cart from './Cart'
+import ContactUs from './ContactUs'
 
 function Navbar() {
     const navigate = useNavigate()
@@ -26,11 +27,15 @@ function Navbar() {
         const signinForm = document.getElementById("signinFrom")
         signinForm.showModal();
     }
+    const openCOntactFrom=()=>{
+        document.getElementById("contact").showModal()
+    }
     const closeDialogBox = () => {
         const signinForm = document.getElementById("signinFrom")
         const signupForm = document.getElementById("signupForm")
         signinForm.close();
         signupForm.close()
+        document.getElementById('contact').close()
         document.getElementById("cartDialog").close();
     }
     const openDropDown = () => {
@@ -86,7 +91,7 @@ function Navbar() {
                                 <li className='home m-4 font-semibold text-white rounded-lg  p-6 cursor-pointer hover:scale-105 transition-transform '><NavLink to="/">Home</NavLink></li>
                                 <li className='products m-4 font-semibold text-white rounded-lg  p-6 cursor-pointer hover:scale-105 transition-transform '><NavLink to="/products">Products</NavLink></li>
                                 <li className='services m-4 font-semibold text-white rounded-lg  p-6 cursor-pointer hover:scale-105 transition-transform '><NavLink to="/services">Services</NavLink></li>
-                                <li className='contact m-4 font-semibold text-white rounded-lg  p-6 cursor-pointer hover:scale-105 transition-transform '><NavLink to="/about">About Us</NavLink></li>
+                                <li className='contact m-4 font-semibold text-white rounded-lg  p-6 cursor-pointer hover:scale-105 transition-transform '><NavLink onClick={openCOntactFrom}>Contact Us</NavLink></li>
                                 <li className='about m-4 font-semibold text-white rounded-lg  p-6 cursor-pointer hover:scale-105 transition-transform '>{localStorage.getItem("login") ?
                                     <div>
                                         <span onClick={openDropDown} className='cursor-pointer'>{JSON.parse(localStorage.getItem('login')).name} 🔽 </span>
@@ -136,6 +141,14 @@ function Navbar() {
 
                         <div className='flex justify-end w-full'><img onClick={closeDialogBox} className='h-10 right-0 cursor-pointer mr-2 mt-2' src={cross} alt="" /></div>
                         <Cart function={closeDialogBox} />
+
+                    </div>
+                </dialog>
+                <dialog id="contact" className='rounded-xl text-center w-[40rem]' style={{ backgroundColor: 'rgb(240, 255, 252)' }}>
+                    <div className='flex flex-col items-center'>
+
+                        <div className='flex justify-end w-full'><img onClick={closeDialogBox} className='h-10 right-0 cursor-pointer mr-2 mt-2' src={cross} alt="" /></div>
+                        <ContactUs function={closeDialogBox} />
 
                     </div>
                 </dialog>

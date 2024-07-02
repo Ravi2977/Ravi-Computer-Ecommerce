@@ -18,7 +18,7 @@ function ViewProduct() {
     const [selectedImage, setSelectedImage] = useState(null);
     const { productId } = useParams();
     const [height, setHeight] = useState(18);
-    const url = "http://localhost:8080/";
+    const url = "https://ecommerce-backend-bmf8.onrender.com";
     const [cartItem, setCartItem] = useState({
         userId: localStorage.getItem('login') ? JSON.parse(localStorage.getItem('login')).useId : "",
         productId: 0

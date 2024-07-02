@@ -6,7 +6,7 @@ import { firestore } from '../Firebase';
 import axios from 'axios';
 
 function AddProduct() {
-  const url = "http://localhost:8080/";
+  const url = "https://ecommerce-backend-bmf8.onrender.com";
   const [productDetails, setProductDetails] = useState({
     productName: "",
     productDesc: "",
@@ -20,8 +20,8 @@ function AddProduct() {
     keyFeature: ""
   });
   const [loading, setLoading] = useState(false);
-  const [imgurl, setImgUrl] = useState("");
-  const messageRef = useRef();
+  // const [imgurl, setImgUrl] = useState("");
+  // const messageRef = useRef();
   const imageRef = useRef();
   const storage = getStorage();
   const auth = getAuth();
@@ -31,7 +31,7 @@ function AddProduct() {
     setLoading(true)
     e.preventDefault();
     try {
-      const response = await axios.post(`${url}auth/addProduct`, productDetails, {
+      await axios.post(`${url}auth/addProduct`, productDetails, {
         headers: {
           'Content-Type': 'application/json'
           // Include any other headers you need here

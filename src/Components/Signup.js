@@ -6,7 +6,7 @@ import Verification from './Verification';
 import { loadBundle } from 'firebase/firestore';
 
 function Signup(props) {
-    const url ="http://localhost:8080/"
+    const url ="https://ecommerce-backend-bmf8.onrender.com"
 const [loading,setLoading]=useState(false)
     const closeVerificationBox=()=>{
     document.getElementById("verify").close();
