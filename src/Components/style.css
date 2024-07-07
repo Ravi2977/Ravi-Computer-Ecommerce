@@ -1,0 +1,131 @@
+body {
+    background-color: #f7fafc;
+    font-family: Arial, sans-serif;
+  }
+  
+  .main-container {
+    display: flex;
+    /* max-width: 1200px; */
+    margin: auto;
+    background-color: #ffffff;
+    /* border-radius: 8px; */
+    box-shadow: 0 4px 6px rgb(71, 98, 102);
+    overflow: hidden;
+  }
+  
+  .sidebar {
+    background-color: rgb(71, 98, 102);
+    color: rgb(71, 98, 102);
+    padding: 32px;
+    width: 25%;
+  }
+  
+  .sidebar h2 {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar-link {
+    display: block;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    background-color: rgb(119, 171, 179);
+    border-radius: 4px;
+    text-decoration: none;
+    color: white;
+    transition: background-color 0.2s;
+  }
+  
+  .sidebar-link:hover {
+    background-color: rgb(120, 193, 204);
+  }
+  
+  .main-content {
+    padding: 32px;
+    width: 75%;
+    background-color: #edf2f7;
+  }
+  
+  .section {
+    margin-bottom: 32px;
+  }
+  
+  .section h2 {
+    font-size: 20px;
+    margin-bottom: 16px;
+    color: rgb(71, 98, 102);
+  }
+  
+  .form {
+    display: grid;
+    gap: 16px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    color: #2d3748;
+    margin-bottom: 4px;
+  }
+  
+  .form-group input {
+    padding: 8px;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+  }
+  
+  .button {
+    padding: 12px 24px;
+    background-color: rgb(112, 148, 153);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .button:hover {
+    color: rgb(255, 255, 255);
+
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgb(71, 98, 102);
+  }
+  
+  .table th, .table td {
+    padding: 12px 16px;
+    border: 1px solid #e2e8f0;
+  }
+  
+  .table th {
+    background-color: rgb(71, 98, 102);
+    color: white;
+  }
+  
+  .wishlist-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .wishlist-item {
+    background-color: white;
+    padding: 16px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgb(71, 98, 102);
+  }
+  

@@ -14,6 +14,8 @@ import CategoryProducts from './Components/CategoryProducts';
 import ViewProduct from './Components/ViewProduct';
 import Account from './Components/Account';
 import Cart from './Components/Cart';
+import AddAddress from './Components/AddAddress';
+import YourAccount from './Components/YourAccount';
 
 function App() {
   return (
@@ -24,14 +26,15 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route exact path='/products' element={<Products />} />
           <Route exact path='/services' element={<Services />} />
-          <Route exact path='/signup' element={<Signup/>} />
+          {/* <Route exact path='/signup' element={<Signup/>} /> */}
           <Route exact path='/addproduct' element={<AddProduct/>} />
           <Route exact path='/build' element={<BuildPC/>} />
           <Route exact path='/verify' element={<Verification/>} />
           <Route exact path='/categoryProduct' element={<CategoryProducts/>} />
           <Route exact path='/viewProduct/:productId' element={<ViewProduct/>} />
-          <Route exact path='/account' element={<Account/>} />
+          <Route exact path='/account' element={<YourAccount/>} />
           <Route exact path='/cart' element={<Cart/>} />
+          <Route exact path='/addAddress' element={<AddAddress/>} />
         </Routes>
       </div>
       <Footer />

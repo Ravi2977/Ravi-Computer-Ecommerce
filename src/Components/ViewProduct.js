@@ -14,6 +14,7 @@ function ViewProduct() {
     const [product, setProduct] = useState(null);
     const [review, setReview] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [addignCart,setAddingCart]=useState(false)
     const [error, setError] = useState(null);
     const [selectedImage, setSelectedImage] = useState(null);
     const { productId } = useParams();
@@ -64,7 +65,7 @@ function ViewProduct() {
         }
     }, [review]);
 
-    if (loading) return <div>Loading...</div>;
+    if (loading) return <div className='text-center '><span className='loader'></span></div>;
     if (error) return <div>Error loading product: {error.message}</div>;
     if (!product) return <div>No product found</div>;
 
@@ -73,6 +74,7 @@ function ViewProduct() {
     };
 
     const handleAddToCart = async () => {
+        setAddingCart(true)
         if (localStorage.getItem('login')) {
             try {
                 const loginData = JSON.parse(localStorage.getItem('login')) || "";
@@ -96,6 +98,7 @@ function ViewProduct() {
             } catch (error) {
                 console.error("Error adding to cart: ", error);
             }
+            setAddingCart(false)
         } else {
             document.getElementById('addInfo').innerHTML = "You Are Not Logged in please login first";
             document.getElementById('addInfo').classList.remove("text-green-600");
@@ -145,7 +148,7 @@ function ViewProduct() {
                         </div>
                         <p className="text-green-600 mb-2">Discount: {product.discountPercentage}%</p>
                     </div>
-                    <button className="mainBgColor mainTextColor font-semibold text-xl hover:scale-105 transition-all w-52 py-2 rounded-md mt-4" onClick={handleAddToCart}>Add to Cart</button>
+                   {addignCart?<spam  className="loader"></spam>: <button className="mainBgColor mainTextColor font-semibold text-xl hover:scale-105 transition-all w-52 py-2 rounded-md mt-4" onClick={handleAddToCart}>Add to Cart</button>}
                     <div className="addInfo h-5 w-full text-center mt-5 font-semibold text-xl text-green-600" id='addInfo'></div>
                 </div>
             </div>

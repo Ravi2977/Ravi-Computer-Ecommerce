@@ -7,13 +7,16 @@ function Products() {
     const url = "https://ecommerce-backend-bmf8.onrender.com/"
     const navigate = useNavigate()
     const [products, setProducts] = useState([])
+    const [loading,setLoading]=useState(false)
     useEffect(() => {
         loadProducts()
         scrollToPosition()
     }, [])
     const loadProducts = async () => {
+        setLoading(true)
         const products = await axios.get(`${url}auth/allProducts`)
         setProducts(products.data)
+        setLoading(false)
     }
     const handleOnCLickProduct = (id) => {
         console.log("Clicked on :-", id)
@@ -25,6 +28,8 @@ function Products() {
             behavior: 'smooth' // For smooth scrolling
         });
     };
+    if (loading) return <div className='text-center '><span className='loader'></span></div>;
+    
     return (
         <div>
             <div className='productCategory'>

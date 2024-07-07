@@ -277,6 +277,7 @@ function Cart(props) {
                 console.error('Error adding to cart:', error);
             }
         }
+        calculateTotalAmount();
     };
 
     const quantityMinusOne = async (id) => {
@@ -294,6 +295,7 @@ function Cart(props) {
                 console.error('Error removing from cart:', error);
             }
         }
+        calculateTotalAmount();
     };
     const handleOnSubmit = (e) => {
         e.preventDefault();

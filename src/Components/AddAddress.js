@@ -1,6 +1,8 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 
 function AddAddress() {
+  const url = "https://ecommerce-backend-bmf8.onrender.com/";
   const [address, setAddress] = useState({
     country: "",
     mobileNumber: "",
@@ -62,14 +64,33 @@ function AddAddress() {
     // Submit the form
     console.log(address);
   };
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+    const url = 'https://ecommerce-backend-bmf8.onrender.com/address/';
+    const loginData = JSON.parse(localStorage.getItem('login'));
 
+    try {
+      const response = await axios.post(
+        `${url}addAddress`,
+        address,
+        {
+          headers: {
+            'Authorization': `Bearer ${loginData.token}`
+          }
+        }
+      );
+      console.log(response.data); // Handle the response as needed
+    } catch (error) {
+      console.error('There was an error!', error);
+    }
+  };
   return (
     <div className="max-w-lg mx-auto p-6 bg-white rounded shadow-md addressFrom">
       <h2 className="text-2xl font-bold mb-4">Address Form</h2>
-      <form onSubmit={handleSubmit} className='flex justify-center flex-col'>
+      <form onSubmit={handleOnSubmit} className='flex justify-center flex-col' >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="mb-4">
-            <label className="block text-gray-700 mb-2" htmlFor="country">Country</label>
+            <label className="maintextcolor maintextcolor " htmlFor="country">Country</label>
             <input
               type="text"
               id="country"
@@ -80,7 +101,7 @@ function AddAddress() {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700 mb-2" htmlFor="mobileNumber">Mobile Number</label>
+            <label className="maintextcolor maintextcolor" htmlFor="mobileNumber">Mobile Number</label>
             <input
               type="text"
               id="mobileNumber"
@@ -93,7 +114,7 @@ function AddAddress() {
             {errors.mobileNumber && <p className="text-red-500 text-sm mt-1">{errors.mobileNumber}</p>}
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700 mb-2" htmlFor="state">State</label>
+            <label className="maintextcolor maintextcolor" htmlFor="state">State</label>
             <input
               type="text"
               id="state"
@@ -104,7 +125,7 @@ function AddAddress() {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700 mb-2" htmlFor="district">District</label>
+            <label className="maintextcolor maintextcolor" htmlFor="district">District</label>
             <input
               type="text"
               id="district"
@@ -115,7 +136,7 @@ function AddAddress() {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700 mb-2" htmlFor="city">City</label>
+            <label className="maintextcolor maintextcolor" htmlFor="city">City</label>
             <input
               type="text"
               id="city"
@@ -126,7 +147,7 @@ function AddAddress() {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700 mb-2" htmlFor="locality">Locality</label>
+            <label className="maintextcolor maintextcolor" htmlFor="locality">Locality</label>
             <input
               type="text"
               id="locality"
@@ -137,7 +158,7 @@ function AddAddress() {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700 mb-2" htmlFor="landmark">Landmark</label>
+            <label className="maintextcolor maintextcolor" htmlFor="landmark">Landmark</label>
             <input
               type="text"
               id="landmark"
@@ -148,7 +169,7 @@ function AddAddress() {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700 mb-2" htmlFor="pincode">Pincode</label>
+            <label className="maintextcolor maintextcolor" htmlFor="pincode">Pincode</label>
             <input
               type="number"
               id="pincode"
@@ -161,7 +182,7 @@ function AddAddress() {
           </div>
         </div>
         <button className='button  border py-4 px-10 rounded-xl font-semibold text-white shadow-2xl build mx-2  p-6 cursor-pointer hover:scale-105 transition-transform '>Submit</button>
-        </form>
+      </form>
     </div>
   );
 }

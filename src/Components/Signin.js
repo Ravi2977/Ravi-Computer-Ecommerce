@@ -101,7 +101,7 @@ function Signin(props) {
                     <p>Don't have an Account <span><a className='text-blue-900 underline underline-offset-1 cursor-pointer'onClick={openSignupForm}> Sign-up </a>here</span></p>
                 </div>
                 <div className="status text-red-700 bg-red-200 w-full text-center rounded-lg" id='status'></div>
-                {loading?<span class="loader"></span>:<button onClick={(e) => { handleOnSubmit(e) }} className='mt-10 mb-3 border py-4 px-10 rounded-xl font-semibold text-white shadow-2xl build button'>Log in</button>}
+                {loading?<span className="loader"></span>:<button onClick={(e) => { handleOnSubmit(e) }} className='mt-10 mb-3 border py-4 px-10 rounded-xl font-semibold text-white shadow-2xl build button'>Log in</button>}
                 {/* <button onClick={openVerificationBox}>click</button> */}
             </div>
             <div>
