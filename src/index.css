@@ -263,13 +263,16 @@ dialog {
 .loader {
   width: 48px;
   height: 48px;
-  margin: 35px;
+  /* margin: 35px; */
   border: 5px solid rgb(71, 98, 102);
   border-bottom-color: transparent;
   border-radius: 50%;
   display: inline-block;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
+}
+.buttonHeight{
+  height: 48px;
 }
 
 @keyframes rotation {

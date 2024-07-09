@@ -4,6 +4,7 @@ import axios from 'axios';
 function YourAccount() {
     const [addresses, setAddresses] = useState([]);
     const [orders, setOrders] = useState([]);
+    const [loading,setLoading]=useState(false)
     const [showAddressForm, setShowAddressForm] = useState(false);
     const url = "https://ecommerce-backend-bmf8.onrender.com/";
     const [passwordDetails, setPassowrdDetails] = useState({
@@ -70,17 +71,51 @@ function YourAccount() {
         })
     }
     const updatePassword = async (e) => {
+        setLoading(true)
         e.preventDefault()
         const loginData=JSON.parse(localStorage.getItem("login"))
         if (passwordDetails.newPassword === passwordDetails.confirmNewPassword) {
-            const response = await axios.post(`${url}passowrd/change`, passwordDetails, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${loginData.token}`
-                }
+            try {
+                const response = await axios.post(`${url}auth/change`, passwordDetails, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${loginData.token}`
+                    }
+                });
+                const infos = document.getElementById("infos");
+                console.log(document.getElementById("infos"))
+                infos.innerHTML = response.data;
+                setTimeout(()=>{
+                    infos.innerHTML ="";
+                },3000)
+                setPassowrdDetails({
+                    oldPassowrd:'',
+                    newPassword:"",
+                    confirmNewPassword:""
+                })
+                setLoading(false)
+            } catch (error) {
+                console.error('Error updating password:', error);
+                const infos = document.getElementById("infos");
+                infos.innerHTML = "Failed to update password. Please try again.";
+                setLoading(false)
+                setPassowrdDetails({
+                    oldPassowrd:'',
+                    newPassword:"",
+                    confirmNewPassword:""
+                })
+            }
+        } else {
+            const infos = document.getElementById("infos");
+            infos.innerHTML = "Passwords do not match.";
+            setLoading(false)
+            setPassowrdDetails({
+                oldPassowrd:'',
+                newPassword:"",
+                confirmNewPassword:""
             })
-            document.getElementById("info").innerHTML=response.data;
         }
+        
     }
 
     return (
@@ -92,7 +127,7 @@ function YourAccount() {
                         <ul>
                             <li><a href="#profile" className="sidebar-link">Profile Information</a></li>
                             <li><a href="#orders" className="sidebar-link">Order History</a></li>
-                            <li><a href="#wishlist" className="sidebar-link">Wishlist</a></li>
+                            {/* <li><a href="#wishlist" className="sidebar-link">Wishlist</a></li> */}
                             <li><a href="#settings" className="sidebar-link">Account Settings</a></li>
                         </ul>
                     </div>
@@ -119,8 +154,8 @@ function YourAccount() {
                                 <button type="submit" className="button">Update Profile</button>
                             </form>
                         </section>
-                        <h2>Order History</h2>
-                        <section id="orders" className="section overflow-auto max-h-96 border rounded">
+                        <h2 id="orders">Order History</h2>
+                        <section  className="section overflow-auto max-h-96 border rounded">
 
                             <table className="table">
                                 <thead>
@@ -182,11 +217,15 @@ function YourAccount() {
                                 </div>
                                 <div className="form-group">
 
-                                    <button className='text-blue-600 flex justify-end hover:underline-offset-1' onClick={toggleShowPassword}>{showPassword ? "Hide Passwords" : "Show Passwords"}</button>
+                                  <div className=' flex justify-end '>
+                                  <button className='text-blue-600 hover:underline-offset-1 ' onClick={toggleShowPassword}>{showPassword ? "Hide Passwords" : "Show Passwords"}</button>
+                                  </div>
 
                                 </div>
-                                <div id="info"></div>
-                                <button type="submit" className="button" onClick={updatePassword}>Update Password</button>
+                                <div className='flex justify-center'>
+                                <div id="infos" className='text-red-600'></div>
+                                </div>
+                                {loading?<div className='flex justify-center'><span className='loader'></span></div>:<button type="submit" className="button buttonHeight flex items-center justify-center" onClick={updatePassword}>Update Password</button>}
                             </form>
                         </section>
                     </div>
