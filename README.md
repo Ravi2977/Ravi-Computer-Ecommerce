@@ -1,6 +1,6 @@
 # Ravi Computer Frontend
 
-<img src="[link_to_your_logo.png](https://firebasestorage.googleapis.com/v0/b/ravi-computer.appspot.com/o/images%2Fnew%20logo%20fixed.png?alt=media&token=6f43e9f1-c7d9-4083-ba95-bdf1ed88a19b)" alt="Project Logo" width="200" height="200">
+<img src="https://firebasestorage.googleapis.com/v0/b/ravi-computer.appspot.com/o/images%2Fnew%20logo%20fixed.png?alt=media&token=6f43e9f1-c7d9-4083-ba95-bdf1ed88a19b" alt="Project Logo" width="200" height="200">
 Welcome to the **Ravi Computer** frontend repository! This is an e-commerce website for a shop named Ravi Computer, specializing in computer sales and services, as well as providing printer and CCTV camera services.
 
 ## Table of Contents
