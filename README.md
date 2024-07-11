@@ -84,7 +84,7 @@ Contributions are welcome! Please read the [CONTRIBUTING.md](https://github.com/
 For any inquiries or feedback, please contact:
 - **Name**: Ravi Maurya
 - **Email**: mauryaravi599@gmail.com
-- **LinkedIn**: [https://www.linkedin.com/in/ravi-maurya-1a37331b6/](link_to_linkedin_profile)
+- **LinkedIn**: [link_to_linkedin_profile](https://www.linkedin.com/in/ravi-maurya-1a37331b6/)
 
 ---
 
