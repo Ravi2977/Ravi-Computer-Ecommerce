@@ -76,7 +76,7 @@ To start using the application, navigate to `http://localhost:3000` in your web 
 
 ## Contributing
 
-Contributions are welcome! Please read the [CONTRIBUTING.md](link_to_contributing_guidelines) for guidelines.
+Contributions are welcome! Please read the [contribution.md](contribution.md) for guidelines.
 
 
 ## Contact
